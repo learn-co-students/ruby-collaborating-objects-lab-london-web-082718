@@ -5,7 +5,12 @@ class Artist
   @@all = []
 
   def initialize(name)
-    @name = name
+    if !Artist.find(name)
+      @name = name
+    else
+      @name = name + " [COPY]"
+      puts "WARNING: Artist name already exists in database. Creating second entry marked [COPY]"
+    end
     @songs = []
     Artist.all << self
   end
@@ -26,8 +31,12 @@ class Artist
     @songs
   end
 
+  def self.find(name)
+    Artist.all.find { |artist| artist.name == name }
+  end
+
   def self.find_or_create_by_name(name)
-    Artist.all.find { |artist| artist.name == name } || Artist.new(name)
+    find(name) || Artist.new(name)
   end
 
   def self.all

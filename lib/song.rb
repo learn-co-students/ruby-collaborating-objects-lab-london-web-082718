@@ -22,7 +22,7 @@ class Song
   end
 
   def artist=(artist_object)
-    @artist = Artist.find_or_create_by_name(artist_object.name)
+    @artist = artist_object
   end
 
   def self.all

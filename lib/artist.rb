@@ -8,7 +8,7 @@ class Artist
     if !Artist.find(name)
       @name = name
     else
-      @name = name + " [COPY]"
+      @name = "[COPY] " + name
       puts "WARNING: Artist name already exists in database. Creating second entry marked [COPY]"
     end
     @songs = []
